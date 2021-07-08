@@ -1,0 +1,112 @@
+<div class="box box-success">
+    <div class="box-header">
+        <i class="fa fa-pencil"></i> บันทึกการรักษา
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="form-group">
+                    <label>เจ้าของสัตว์เลี้ยง</label>
+                    <div class="input-group">
+                        <input class="form-control" readonly="readonly" name="customers.name" [(ngModel)]="customers.name" /> 
+                        <a class="btn bg-green input-group-addon" (click)="loadCustomers()" data-toggle="modal" data-target="#modalCustumer">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label>สัตว์เลี้ยงของคุณ</label>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="90px">เลือก</th>
+                                    <th width="150px">ชื่อ</th>
+                                    <th>หมายเหตุ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of pet">
+                                    <td class="text-center">
+                                        <a class="btn btn-primary" (click)="choosePet(item)">
+                                            <i class="fa fa-chack"></i>
+                                            เลือก
+                                        </a>
+                                    </td>
+                                    <th> {{ item.name }} </th>
+                                    <th> {{ item.remark }} </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label> คุณเลือก  : </label>
+                    <input class="form-control" readonly="readonly" />
+                </div>
+                <div class="form-group">
+                    <label>อาการสัตว์เลี้ยง</label>
+                    <input class="form-control" name="repair.problem" [(ngModel)]="repair.problem" />
+                </div>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary"  (Click)="saveRepair()">
+                    <i class="fa fa-check"></i> บันทึก 
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box box-info">
+    <div class="box-header">
+        <i class="fa fa-list-alt"></i> ประวัติการรักษา
+    </div>
+    <div class="box-body">
+        table
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalCustumer" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h4 class="modal-title">
+              <i class="fa fa-pencil"></i> ข้อมูลลูกค้า
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th width="90px"></th>
+                        <th>code</th>
+                        <th>ชื่อ</th>
+                        <th>เบอร์โทร</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of customer">
+                        <td>
+                            <a data-dismiss="modal" (click)="chooseCustomer(item)" class="btn btn-primary">
+                                <i class="fa fa-check"></i>
+                                เลือก
+                            </a>
+                        </td>
+                        <td> {{ item.code }} </td>
+                        <td> {{ item.name }} </td>
+                        <td> {{ item.tel }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>

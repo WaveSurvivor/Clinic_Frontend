@@ -1,0 +1,104 @@
+<div class="box box-success">
+    <div class="box-header">
+        <i class="fa fa-globe"></i>สัตว์เลี้ยง
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="form-group">
+                    <label>เจ้าของ</label>
+                    <div class="input-group">
+                        <input class="form-control" name="customers.name" [(ngModel)]="customers.name"/>
+                        <a class="btn input-group-addon bg-green" data-toggle="modal" data-target="#modalCustumer">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="form-group">
+                    <label>ชื่อสัตว์เลี้ยง</label>
+                    <input class="form-control" name="pet.name" [(ngModel)]="pet.name" />
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="form-group">
+                    <label>หมายเหตุ</label>
+                    <input class="form-control" name="pet.remark" [(ngModel)]="pet.remark" />
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="form-group text-center">
+                    <a class="btn btn-primary" (click)="save()">
+                        <i class="fa fa-check"></i> บันทึก
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>เจ้าของ</th>
+                    <th>ชื่อสัตว์เลี้ยง</th>
+                    <th>หมายเหตุ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of pets">
+                    <td>
+                        <a class="btn btn-danger">
+                            <i class="fa fa-times" (click)="detelePet(item)"></i>
+                        </a>&nbsp;
+                        <a class="btn btn-primary" >
+                            <i class="fa fa-pencil" (click)="updatePet(item)" ></i>
+                        </a>
+                    </td>
+                    <td> {{ item.customer[0].name}}</td>
+                    <td> {{ item.name }} </td>
+                    <td> {{ item.remark }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCustumer" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h4 class="modal-title">
+              <i class="fa fa-pencil"></i> ข้อมูลลูกค้า
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th width="90px"></th>
+                        <th>code</th>
+                        <th>ชื่อ</th>
+                        <th>เบอร์โทร</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of customer">
+                        <td>
+                            <a data-dismiss="modal" (click)="chooseCustomer(item)" class="btn btn-primary">
+                                <i class="fa fa-check"></i>
+                                เลือก
+                            </a>
+                        </td>
+                        <td> {{ item.code }} </td>
+                        <td> {{ item.name }} </td>
+                        <td> {{ item.tel }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
